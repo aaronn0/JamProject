@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bf325ocwpgxo7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_utxia"]
-size = Vector3(30, 1, 30)
+size = Vector3(7, 1, 13)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f0ivy"]
-size = Vector3(30, 1, 1)
+size = Vector3(7, 1, 13)
 
 [node name="submarine" type="RigidBody3D"]
+gravity_scale = 0.0
+lock_rotation = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_utxia")
