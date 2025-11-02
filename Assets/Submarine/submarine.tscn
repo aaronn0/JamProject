@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf325ocwpgxo7"]
+
+[ext_resource type="PackedScene" uid="uid://dvq83psx2stij" path="res://Assets/Radar/radar.tscn" id="1_j8my8"]
+[ext_resource type="Script" path="res://Assets/Submarine/submarine.gd" id="1_oo0k7"]
+[ext_resource type="PackedScene" uid="uid://cphjfh7ly6gej" path="res://Assets/Seat/seat.tscn" id="2_dqxtp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7j1tq"]
+size = Vector3(3.5, 1, 7)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jqv5q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d7bjc"]
+size = Vector3(3.5, 1, 7)
+
+[node name="submarine" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 30.0
+gravity_scale = 0.0
+script = ExtResource("1_oo0k7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7j1tq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+layers = 3
+mesh = SubResource("SphereMesh_jqv5q")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 3
+mesh = SubResource("BoxMesh_d7bjc")
+
+[node name="radar" parent="." instance=ExtResource("1_j8my8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.82299, -3.25)
+
+[node name="seat" parent="." instance=ExtResource("2_dqxtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.441549)

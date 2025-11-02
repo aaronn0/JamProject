@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfake8pps360a"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_jgaxo"]
+[ext_resource type="PackedScene" uid="uid://bf325ocwpgxo7" path="res://Submarine/submarine.tscn" id="1_x3bgo"]
+[ext_resource type="PackedScene" uid="uid://b1nd5cob2r168" path="res://Player/player.tscn" id="2_3xoqa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u06m3"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.5, 0.5, 0.5, 1)
+sky_energy_multiplier = 8.0
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="Sky" id="Sky_0qypl"]
+sky_material = SubResource("ProceduralSkyMaterial_u06m3")
+
+[sub_resource type="Environment" id="Environment_bdcqc"]
+background_mode = 2
+sky = SubResource("Sky_0qypl")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="level_one" type="Node"]
+script = ExtResource("1_jgaxo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bdcqc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="submarine" parent="." instance=ExtResource("1_x3bgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0152261, -4.76837e-07, 0.0214615)
+
+[node name="player" parent="." instance=ExtResource("2_3xoqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297413, 1.72588, -0.00516009)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, 3.09086e-08, 0.707107, 0.707107, 1, 0, -4.37114e-08, -15.0219, 12.7032, 0)
