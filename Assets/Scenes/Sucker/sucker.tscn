@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp8c8ybhgobi4"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Sucker/sucker.gd" id="1_l0l17"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="2_sr8lw"]
+
+[sub_resource type="Gradient" id="Gradient_3ijok"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x0vbj"]
+gradient = SubResource("Gradient_3ijok")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l86w1"]
+render_priority = 0
+shader = ExtResource("2_sr8lw")
+shader_parameter/radius = 0.5
+shader_parameter/feather = 0.9
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/tex = SubResource("GradientTexture1D_x0vbj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fsjo5"]
+material = SubResource("ShaderMaterial_l86w1")
+size = Vector2(30, 30)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ybuj"]
+height = 0.5
+radius = 15.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qdji0"]
+height = 0.5
+radius = 15.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m6rlm"]
+height = 0.5
+radius = 1.5
+
+[node name="sucker" type="Node3D"]
+script = ExtResource("1_l0l17")
+
+[node name="Suck Sprite" type="MeshInstance3D" parent="."]
+visible = false
+layers = 2
+mesh = SubResource("PlaneMesh_fsjo5")
+
+[node name="Vacuum" type="ShapeCast3D" parent="."]
+shape = SubResource("CylinderShape3D_1ybuj")
+target_position = Vector3(0, 0, 0)
+collision_mask = 4
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="Exit Checker" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit Checker"]
+shape = SubResource("CylinderShape3D_qdji0")
+
+[node name="Chute" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Chute"]
+shape = SubResource("CylinderShape3D_m6rlm")

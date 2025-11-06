@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dfake8pps360a"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_y0or6"]
-[ext_resource type="PackedScene" uid="uid://bf325ocwpgxo7" path="res://Assets/Submarine/submarine.tscn" id="2_e2o6v"]
-[ext_resource type="PackedScene" uid="uid://b1nd5cob2r168" path="res://Assets/Player/player.tscn" id="3_4epit"]
-[ext_resource type="PackedScene" uid="uid://b4fxnl50kheak" path="res://Assets/Item/item.tscn" id="4_md1cq"]
+[ext_resource type="PackedScene" uid="uid://bf325ocwpgxo7" path="res://Assets/Scenes/Submarine/submarine.tscn" id="2_e2o6v"]
+[ext_resource type="PackedScene" uid="uid://b1nd5cob2r168" path="res://Assets/Scenes/Player/player.tscn" id="3_4epit"]
+[ext_resource type="PackedScene" uid="uid://b4fxnl50kheak" path="res://Assets/Scenes/Item/item.tscn" id="4_md1cq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u06m3"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -53,10 +53,7 @@ cull_mask = 1
 [node name="player" parent="." instance=ExtResource("3_4epit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297413, 1.72588, -0.00516009)
 
-[node name="item2" parent="." instance=ExtResource("4_md1cq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 9, 16)
-
 [node name="item" parent="." instance=ExtResource("4_md1cq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6, -18)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, 6)
 
 [connection signal="reparent" from="player" to="." method="_on_player_reparent"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://bf325ocwpgxo7"]
+
+[ext_resource type="PackedScene" uid="uid://dvq83psx2stij" path="res://Assets/Scenes/Radar/radar.tscn" id="1_j8my8"]
+[ext_resource type="Script" path="res://Assets/Scenes/Submarine/submarine.gd" id="1_oo0k7"]
+[ext_resource type="PackedScene" uid="uid://cphjfh7ly6gej" path="res://Assets/Scenes/Seat/seat.tscn" id="2_dqxtp"]
+[ext_resource type="PackedScene" uid="uid://bp8c8ybhgobi4" path="res://Assets/Scenes/Sucker/sucker.tscn" id="4_kfcq8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1h10"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_iqqje"]
+material = SubResource("StandardMaterial3D_e1h10")
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on4qe"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_biu3b"]
+material = SubResource("StandardMaterial3D_on4qe")
+size = Vector3(3.5, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kth6p"]
+size = Vector3(3.5, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7j1tq"]
+size = Vector3(3.5, 1, 7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d7bjc"]
+size = Vector3(3.5, 1, 7)
+
+[node name="submarine" type="RigidBody3D"]
+collision_layer = 16
+collision_mask = 16
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 30.0
+gravity_scale = 0.0
+script = ExtResource("1_oo0k7")
+
+[node name="radarView" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, -5)
+layers = 2
+mesh = SubResource("PrismMesh_iqqje")
+
+[node name="radarColliderView" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+layers = 2
+mesh = SubResource("BoxMesh_biu3b")
+skeleton = NodePath("../radarView")
+
+[node name="aboveCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+shape = SubResource("BoxShape3D_kth6p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7j1tq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_d7bjc")
+
+[node name="radar" parent="." instance=ExtResource("1_j8my8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.75, -3.25)
+
+[node name="seat" parent="." instance=ExtResource("2_dqxtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.441549)
+
+[node name="sucker" parent="." instance=ExtResource("4_kfcq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)

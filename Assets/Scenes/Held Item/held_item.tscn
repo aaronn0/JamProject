@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvaxmf7shwvpp"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Held Item/held_item.gd" id="1_v2klj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nppdg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xh7t0"]
+radius = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_cd73g"]
+radius = 0.25
+height = 0.5
+
+[node name="heldItem" type="RigidBody3D"]
+collision_layer = 25
+collision_mask = 25
+physics_material_override = SubResource("PhysicsMaterial_nppdg")
+script = ExtResource("1_v2klj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xh7t0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_cd73g")
