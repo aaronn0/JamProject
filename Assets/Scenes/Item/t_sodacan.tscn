@@ -1,0 +1,40 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxtw14y227y77"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Item/item.gd" id="1_6hm45"]
+[ext_resource type="AudioStream" uid="uid://dx2s5bpoh5m0m" path="res://Assets/Sounds/trash/sfx_trashAcquired_01.wav" id="2_ys4af"]
+[ext_resource type="AudioStream" uid="uid://bs4458s03qrj1" path="res://Assets/Sounds/trash/sfx_trashAcquired_02.wav" id="3_lf5v7"]
+[ext_resource type="AudioStream" uid="uid://7paoi0f6jek1" path="res://Assets/Sounds/trash/sfx_trashAcquired_03.wav" id="4_ucg88"]
+[ext_resource type="AudioStream" uid="uid://bf1cggb6rv80s" path="res://Assets/Sounds/trash/sfx_trashAcquired_04.wav" id="5_xmhxs"]
+[ext_resource type="AudioStream" uid="uid://dfqxlcxywdceq" path="res://Assets/Sounds/trash/sfx_trashAcquired_05.wav" id="6_h7xfg"]
+[ext_resource type="AudioStream" uid="uid://b5ft36jk2wi6t" path="res://Assets/Sounds/trash/sfx_trashAcquired_06.wav" id="7_cnvxb"]
+[ext_resource type="PackedScene" uid="uid://cvaxmf7shwvpp" path="res://Assets/Scenes/Held Item/held_item.tscn" id="8_64lyn"]
+[ext_resource type="Image" uid="uid://bcchy0wjahhnr" path="res://Assets/Sprites and Models/trash_sodaCan.png" id="9_hg74o"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_48p4q"]
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x652x"]
+height = 0.5
+
+[node name="t_can" type="RigidBody3D"]
+collision_layer = 20
+collision_mask = 20
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+gravity_scale = 0.0
+script = ExtResource("1_6hm45")
+sounds = Array[AudioStream]([ExtResource("2_ys4af"), ExtResource("3_lf5v7"), ExtResource("4_ucg88"), ExtResource("5_xmhxs"), ExtResource("6_h7xfg"), ExtResource("7_cnvxb")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_48p4q")
+
+[node name="beep" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CylinderMesh_x652x")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="heldItem" parent="." instance=ExtResource("8_64lyn")]
+texture = ExtResource("9_hg74o")

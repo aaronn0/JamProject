@@ -4,10 +4,13 @@ extends Node3D
 @onready var sprite := $"Suck Sprite"
 @onready var exit := $"Exit Checker"
 @onready var chute := $Chute
+@onready var drop := $dropPoint
 
-var force = 4500
+var force = 10000
 var sucking = false
 var entered_items : Array
+
+signal bomb
 
 func _ready() -> void:
 	chute.monitoring = false
@@ -46,4 +49,8 @@ func on_item_exited():
 
 func chute_entered(body : CollisionObject3D):
 	print("entered")
-	body.drop_item(self.get_parent().basis * Vector3(0, 0, 2) + position)
+	if body.name.begins_with("bomb"):
+		bomb.emit()
+	else:
+		get_parent().get_parent().add_item(body)
+	body.drop_item(drop.global_position)

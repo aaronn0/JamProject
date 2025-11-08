@@ -2,16 +2,20 @@ extends RigidBody3D
 
 @onready var radar_beep = $beep
 @onready var collider = $CollisionShape3D
-@onready var held_item := $heldItem
+
+@export var sounds : Array[AudioStream]
 
 var tween
 var sucking = false
 var identity
+var beeping = false
 
 func _ready() -> void:
+	var held_item := $heldItem
 	radar_beep.material_override =  StandardMaterial3D.new()
 	radar_beep.material_override.albedo_color = Color(0, 0, 0, 1)
 	radar_beep.visible = false
+	
 	
 	linear_damp = 0.3
 	
@@ -24,10 +28,12 @@ func _ready() -> void:
 
 func beep():
 	if !sucking:
+		beeping = true
 		fade_in()
 		var timer = get_tree().create_timer(2)
 		await timer.timeout
 		timer.is_queued_for_deletion()
+		beeping = false
 		fade_away()
 
 func fade_in():
@@ -52,7 +58,10 @@ func fade_away():
 
 func drop_item(pos : Vector3):
 	var temp = identity.instantiate()
-	var parent = self.get_parent()
-	temp.position = pos
+	var parent = self.get_parent().get_parent()
 	parent.find_child("submarine").add_child(temp)
+	temp.global_position = pos
+	visible = false
+	collider.disabled = true
+	SoundManager.play_sound(sounds.pick_random())
 	queue_free()

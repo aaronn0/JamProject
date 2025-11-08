@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cphjfh7ly6gej"]
+[gd_scene load_steps=5 format=3 uid="uid://cphjfh7ly6gej"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Seat/seat.gd" id="1_4v7xm"]
+[ext_resource type="ArrayMesh" uid="uid://c0eg7768vcal1" path="res://Assets/Sprites and Models/13761_rounded_reception_chair_v1_NEW.obj" id="2_dput4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_op086"]
 size = Vector3(1, 0.5, 1)
@@ -25,3 +26,7 @@ shape = SubResource("BoxShape3D_op086")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_akric")
+
+[node name="13761RoundedReceptionChairV1New" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.80825e-10, 0.011, 4.80825e-10, 0, -4.80825e-10, 0.011, 0.011, 4.80825e-10, 2.10175e-17, -0.027817, -0.168303, -0.161788)
+mesh = ExtResource("2_dput4")

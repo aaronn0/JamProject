@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bv5htjirmdgb1"
+path="res://.godot/imported/healthbar_0bars.png-76f57acd5bfd680f24283a8c018a2c62.image"
+
+[deps]
+
+source_file="res://Assets/Sprites and Models/healthbar_0bars.png"
+dest_files=["res://.godot/imported/healthbar_0bars.png-76f57acd5bfd680f24283a8c018a2c62.image"]
+
+[params]
+

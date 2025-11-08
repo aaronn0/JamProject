@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bimc5sfygcy3"]
+
+[ext_resource type="Texture2D" uid="uid://bhe65hlqln8m5" path="res://Assets/Sprites and Models/Untitled_Artwork_65.png" id="1_7xy0g"]
+[ext_resource type="FontFile" uid="uid://3g6lw27f2ii3" path="res://Assets/Font/Pencilant Script.ttf" id="2_j68fh"]
+[ext_resource type="Script" path="res://Assets/button.gd" id="3_208wk"]
+
+[sub_resource type="Gradient" id="Gradient_yfbks"]
+colors = PackedColorArray(0.117647, 0.0901961, 0.0862745, 1, 0.105882, 0.0862745, 0.0784314, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ujbfp"]
+gradient = SubResource("Gradient_yfbks")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("GradientTexture1D_ujbfp")
+
+[node name="UntitledArtwork65" type="Sprite2D" parent="."]
+position = Vector2(227, 180)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("1_7xy0g")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 266.0
+offset_right = 640.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("2_j68fh")
+theme_override_font_sizes/font_size = 40
+flat = true
+expand_icon = true
+script = ExtResource("3_208wk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 263.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_j68fh")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Play[/center]"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false

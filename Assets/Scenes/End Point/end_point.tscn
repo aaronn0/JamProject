@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2couw0elibl8"]
+
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="1_ldyjr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atub4"]
+render_priority = 0
+shader = ExtResource("1_ldyjr")
+shader_parameter/radius = 0.5
+shader_parameter/feather = 1.0
+shader_parameter/center = Vector2(0.5, 0.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8x0jp"]
+material = SubResource("ShaderMaterial_atub4")
+size = Vector2(20, 20)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n4xqj"]
+height = 101.0
+radius = 10.0
+
+[node name="endPoint" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("PlaneMesh_8x0jp")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 48
+collision_mask = 48
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_n4xqj")

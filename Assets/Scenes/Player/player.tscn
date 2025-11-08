@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scenes/Player/player.gd" id="1_sx15e"]
 [ext_resource type="Shader" path="res://shaders/retro.gdshader" id="2_q25j4"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_unc8o"]
+[ext_resource type="PackedScene" uid="uid://bktf7h7v8wi65" path="res://Assets/Scenes/playerUi/player_ui.tscn" id="3_je6qx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m8u8k"]
 
@@ -28,13 +27,9 @@ shader_parameter/warble_amount = 0.002
 shader_parameter/warble_speed = 3.0
 
 [node name="player" type="CharacterBody3D"]
-collision_layer = 24
-collision_mask = 24
+collision_layer = 40
+collision_mask = 40
 script = ExtResource("1_sx15e")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_unc8o")
-skeleton = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_m8u8k")
@@ -50,6 +45,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="playerUi" parent="CanvasLayer" instance=ExtResource("3_je6qx")]
+
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536054, 0)
 
@@ -59,9 +56,6 @@ cull_mask = 1
 [node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
 target_position = Vector3(0, 0, -4)
 collision_mask = 8
-
-[node name="itemPos" type="PinJoint3D" parent="Neck/Camera3D"]
-node_a = NodePath("../../..")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

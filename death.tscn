@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnn5ehc7pt862"]
+
+[ext_resource type="FontFile" uid="uid://3g6lw27f2ii3" path="res://Assets/Font/Pencilant Script.ttf" id="1_qyrdt"]
+[ext_resource type="Script" path="res://Assets/button.gd" id="2_lne8m"]
+
+[sub_resource type="Gradient" id="Gradient_qkfjn"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m8fjb"]
+gradient = SubResource("Gradient_qkfjn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dt74e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7h8ag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6c75v"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("GradientTexture1D_m8fjb")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 5.0
+offset_right = 632.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_qyrdt")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dt74e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7h8ag")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_6c75v")
+text = "     you died lol"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 204.0
+offset_right = 440.0
+offset_bottom = 298.0
+theme_override_fonts/font = ExtResource("1_qyrdt")
+theme_override_font_sizes/font_size = 40
+flat = true
+expand_icon = true
+script = ExtResource("2_lne8m")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 263.0
+offset_bottom = 94.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_qyrdt")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Retry[/center]"
+scroll_active = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false

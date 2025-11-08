@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://bktf7h7v8wi65"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/playerUi/player_ui.gd" id="1_jtn67"]
+[ext_resource type="Image" uid="uid://bv5htjirmdgb1" path="res://Assets/Sprites and Models/healthbar_0bars.png" id="2_031qp"]
+[ext_resource type="Image" uid="uid://c3fbxbcpoc87k" path="res://Assets/Sprites and Models/healthbar_1bar.png" id="3_uix7d"]
+[ext_resource type="Image" uid="uid://530a3xo5mcgb" path="res://Assets/Sprites and Models/healthbar_2bars.png" id="4_js20g"]
+[ext_resource type="Image" uid="uid://dbhr5rbfa85k7" path="res://Assets/Sprites and Models/healthbar_3bars.png" id="5_35n4e"]
+[ext_resource type="FontFile" uid="uid://3g6lw27f2ii3" path="res://Assets/Font/Pencilant Script.ttf" id="6_jflah"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_np8eo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_puh65"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ftbbu"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtn67")
+states = Array[Image]([ExtResource("2_031qp"), ExtResource("3_uix7d"), ExtResource("4_js20g"), ExtResource("5_35n4e")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_bottom = 70.0
+expand_mode = 3
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_top = 131.0
+offset_right = 231.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_jflah")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_np8eo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_puh65")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ftbbu")
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 135.0
+offset_right = 428.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_jflah")
+bbcode_enabled = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 9.0
+offset_right = 641.0
+offset_bottom = 357.0
+theme_override_fonts/normal_font = ExtResource("6_jflah")
+bbcode_enabled = true
+text = "How to Play:
+
+WASD to move
+E to sit on chair
+
+Space when sitting in chair to activate vacuum
+
+Esc to tab out
+
+Collect everything before the time runs out to win!"

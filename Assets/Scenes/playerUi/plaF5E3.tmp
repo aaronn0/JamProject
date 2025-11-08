@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bktf7h7v8wi65"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/playerUi/player_ui.gd" id="1_jtn67"]
+[ext_resource type="Image" uid="uid://bv5htjirmdgb1" path="res://Assets/Sprites and Models/healthbar_0bars.png" id="2_031qp"]
+[ext_resource type="Image" uid="uid://c3fbxbcpoc87k" path="res://Assets/Sprites and Models/healthbar_1bar.png" id="3_uix7d"]
+[ext_resource type="Image" uid="uid://530a3xo5mcgb" path="res://Assets/Sprites and Models/healthbar_2bars.png" id="4_js20g"]
+[ext_resource type="Image" uid="uid://dbhr5rbfa85k7" path="res://Assets/Sprites and Models/healthbar_3bars.png" id="5_35n4e"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtn67")
+states = Array[Image]([ExtResource("2_031qp"), ExtResource("3_uix7d"), ExtResource("4_js20g"), ExtResource("5_35n4e")])
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_bottom = 200.0
+expand_mode = 3

@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dk3c0f3yph624"
+path="res://.godot/imported/button_pressed.png-7586a616cfe668ceee5ebda490829a7b.image"
+
+[deps]
+
+source_file="res://Assets/Sprites and Models/button_pressed.png"
+dest_files=["res://.godot/imported/button_pressed.png-7586a616cfe668ceee5ebda490829a7b.image"]
+
+[params]
+

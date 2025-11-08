@@ -4,17 +4,18 @@ signal reparent
 
 const SPEED = 200
 
-var sens = 0.005
-var sitting = false
-var tween : Tween
-var item : CollisionObject3D
-
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 @onready var ray := $Neck/Camera3D/RayCast3D
 @onready var collider := $CollisionShape3D
 @onready var itemPos := $Neck/Camera3D/itemPos
+@onready var gui := $CanvasLayer/playerUi
 
+var sens = 0.005
+var sitting = false
+var tween : Tween
+var item : CollisionObject3D
+var health = 3
 
 func _ready() -> void:
 	tween = create_tween()
@@ -46,8 +47,6 @@ func _input(event: InputEvent) -> void:
 					await get_tree().create_timer(0.2).timeout
 					reparent.emit()
 					item.sat()
-				"heldItem":
-					item.hold_item(itemPos, self)
 	else:
 		if event is InputEventMouseMotion:
 			neck.rotate_y(-event.relative.x * sens)
@@ -57,8 +56,6 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("Interact"):
 			sitting = false
 			item.sat()
-			collider.disabled = false
-			velocity += Vector3(0, 1, 0)
 			reparent.emit()
 	
 func _physics_process(delta: float) -> void:
@@ -78,3 +75,19 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		move_and_slide()
+
+func add_health(hp : int):
+	health += hp
+	gui.updateHealth(health)
+	print(health)
+
+func updateText(nums : Array, reqs : Array[int], finished : bool):
+	if finished:
+		gui.updateText("You've collected everything you need. Follow the arrow back home.")
+	else:
+		var indexes = ["Trash", "Treasure", "Cutlery"]
+		var string = ""
+		for i in range(len(reqs)):
+			if reqs[i] > 0:
+				string += indexes[i] + " left to collect: " + str(nums[i]) + "/" + str(reqs[i]) + "\n"
+		gui.updateText(string)

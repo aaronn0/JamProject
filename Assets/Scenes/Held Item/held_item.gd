@@ -1,35 +1,20 @@
 extends RigidBody3D
 
-@onready var collider = $CollisionShape3D
+@onready var img = $image
 
-var held = false
-var speed = 1000
+@export var texture : Image
 
-func hold_item(point: Joint3D, parent: Node3D):
-	var held = true
-	print(parent.name)
-	get_parent().remove_child(self)
-	parent.add_child(self)
-	self.owner = parent
-	gravity_scale = 0
-	collider.disabled = true
-	
-	axis_lock_linear_x = true
-	axis_lock_linear_y = true
-	axis_lock_linear_z = true
-	self.position = Vector3(0, 0, 0)
-	self.rotation = Vector3(0, 0, 0)
-	
-	point.node_b = self.get_path()
+var player
 
-func drop(parent: Node):
-	held = false
-	get_parent().remove_child(self)
-	parent.add_child(self)
-	self.owner = parent
+func _ready() -> void:
+	img.material_override = StandardMaterial3D.new()
+	img.material_override.albedo_texture = ImageTexture.create_from_image(texture)
+	img.material_override.transparency = 1
 	
-	axis_lock_angular_x = false
-	axis_lock_angular_y = false
-	axis_lock_angular_z = false
-	gravity_scale = 1
-	collider.disabled = false
+	linear_damp = .5
+
+func _physics_process(delta: float) -> void:
+	player = get_parent().get_parent().find_child("player")
+	if player != null:
+		img.look_at(player.neck.global_position)
+		img.rotate_object_local(Vector3(-1, 0, 0), PI/2)

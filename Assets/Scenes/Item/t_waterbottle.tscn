@@ -1,0 +1,40 @@
+[gd_scene load_steps=12 format=3 uid="uid://wq3morcs1bkw"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Item/item.gd" id="1_t6nck"]
+[ext_resource type="AudioStream" uid="uid://dx2s5bpoh5m0m" path="res://Assets/Sounds/trash/sfx_trashAcquired_01.wav" id="2_init5"]
+[ext_resource type="PackedScene" uid="uid://cvaxmf7shwvpp" path="res://Assets/Scenes/Held Item/held_item.tscn" id="2_x0lms"]
+[ext_resource type="Image" uid="uid://lu61gjni503r" path="res://Assets/Sprites and Models/trash_waterbottle.png" id="3_3akws"]
+[ext_resource type="AudioStream" uid="uid://bs4458s03qrj1" path="res://Assets/Sounds/trash/sfx_trashAcquired_02.wav" id="3_7rt2l"]
+[ext_resource type="AudioStream" uid="uid://7paoi0f6jek1" path="res://Assets/Sounds/trash/sfx_trashAcquired_03.wav" id="4_ed1mi"]
+[ext_resource type="AudioStream" uid="uid://bf1cggb6rv80s" path="res://Assets/Sounds/trash/sfx_trashAcquired_04.wav" id="5_tbv7p"]
+[ext_resource type="AudioStream" uid="uid://dfqxlcxywdceq" path="res://Assets/Sounds/trash/sfx_trashAcquired_05.wav" id="6_yx6sv"]
+[ext_resource type="AudioStream" uid="uid://b5ft36jk2wi6t" path="res://Assets/Sounds/trash/sfx_trashAcquired_06.wav" id="7_lollp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_48p4q"]
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x652x"]
+height = 0.5
+
+[node name="t_bottle" type="RigidBody3D"]
+collision_layer = 20
+collision_mask = 20
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 15.0
+gravity_scale = 0.0
+script = ExtResource("1_t6nck")
+sounds = Array[AudioStream]([ExtResource("2_init5"), ExtResource("3_7rt2l"), ExtResource("4_ed1mi"), ExtResource("5_tbv7p"), ExtResource("6_yx6sv"), ExtResource("7_lollp")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_48p4q")
+
+[node name="beep" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CylinderMesh_x652x")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="heldItem" parent="." instance=ExtResource("2_x0lms")]
+texture = ExtResource("3_3akws")

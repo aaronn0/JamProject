@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpixxbj6aixx5"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Item/item.gd" id="1_8cl7e"]
+[ext_resource type="AudioStream" uid="uid://cwrc7fhnwhfjs" path="res://Assets/Sounds/treasure/sfx_treasureAquired_Ring.wav" id="2_10d5t"]
+[ext_resource type="PackedScene" uid="uid://cvaxmf7shwvpp" path="res://Assets/Scenes/Held Item/held_item.tscn" id="2_lqhf3"]
+[ext_resource type="Image" uid="uid://c6vbbw4ppaldv" path="res://Assets/Sprites and Models/treasure_ring.png" id="3_biace"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_48p4q"]
+height = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x652x"]
+height = 0.5
+
+[node name="re_ring" type="RigidBody3D"]
+collision_layer = 20
+collision_mask = 20
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 7.0
+gravity_scale = 0.0
+script = ExtResource("1_8cl7e")
+sounds = Array[AudioStream]([ExtResource("2_10d5t")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_48p4q")
+
+[node name="beep" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CylinderMesh_x652x")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="heldItem" parent="." instance=ExtResource("2_lqhf3")]
+texture = ExtResource("3_biace")

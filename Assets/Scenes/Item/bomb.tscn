@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://fq810kxx7vsr"]
+
+[ext_resource type="Script" path="res://Assets/Scenes/Item/bomb.gd" id="1_ollvv"]
+[ext_resource type="AudioStream" uid="uid://dyvdsgh6tigjw" path="res://Assets/Sounds/radar/sfx_radar_bleep_v01.wav" id="2_enmci"]
+[ext_resource type="AudioStream" uid="uid://c7m5387u0f4re" path="res://Assets/Sounds/explosion/sfx_underwaterExplosion_04.wav" id="5_0lmpq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_48p4q"]
+height = 0.5
+radius = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x652x"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ortu4"]
+height = 0.5
+radius = 25.0
+
+[node name="bomb" type="RigidBody3D"]
+collision_layer = 20
+collision_mask = 20
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 40.0
+gravity_scale = 0.0
+script = ExtResource("1_ollvv")
+sounds = Array[AudioStream]([ExtResource("5_0lmpq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_48p4q")
+
+[node name="beep" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CylinderMesh_x652x")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_enmci")
+pitch_scale = 3.0
+
+[node name="radius" type="ShapeCast3D" parent="."]
+shape = SubResource("CylinderShape3D_ortu4")
+target_position = Vector3(0, 0, 0)
+collision_mask = 32
